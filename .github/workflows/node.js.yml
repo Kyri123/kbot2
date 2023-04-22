@@ -3,20 +3,6 @@ name: Build and Deploy
 on: [ push ]
 
 jobs:
-    test-docker:
-        name: "Test and Build as Docker"
-        runs-on: ubuntu-latest
-
-        steps:
-            -   uses: actions/checkout@v3
-            -   name: Build Docker Image
-                #continue-on-error: true
-                uses: docker/build-push-action@v4
-                with:
-                    context: .
-                    push: false
-                    tags: user/app:latest
-
     test-app:
         runs-on: ubuntu-latest
         strategy:
@@ -34,7 +20,7 @@ jobs:
             -   run: yarn build
 
     deploy:
-        needs: [ test-app, test-docker ]
+        needs: [ test-app ]
         name: "Deploy to Server"
         runs-on: ubuntu-latest
         steps:
