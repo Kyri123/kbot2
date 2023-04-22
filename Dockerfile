@@ -10,6 +10,7 @@ RUN yarn install
 # Copy main configs
 COPY *.ts ./
 COPY *.js ./
+COPY *.cjs ./
 COPY *.html ./
 COPY .browserslistrc ./
 
